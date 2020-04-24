@@ -1,6 +1,8 @@
 const createError = require("http-errors");
 const cors = require("cors");
+// MAKE ENV_VARIABLE ACCESSIBLE
 require("dotenv").config();
+// CONNECT TO MONGO DB ATLAS IN THE CLOUD
 require("./controllers/dbConnection")();
 const appDotUseRoute = require("./controllers/routers");
 const express = require("express");
@@ -11,7 +13,7 @@ const logger = require("morgan");
 const app = express();
 const corsOptions = {
   origin: "http://localhost:3000",
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
 };
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -26,12 +28,12 @@ app.use(express.static(path.join(__dirname, "albumcovers")));
 appDotUseRoute(app);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
