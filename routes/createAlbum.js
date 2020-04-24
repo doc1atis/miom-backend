@@ -4,12 +4,12 @@ const multer = require("multer");
 const Album = require("../models/AlbumModel");
 const requireAuth = require("../controllers/authentication/passportConfig");
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: function (req, file, cb) {
     cb(null, "albumcovers");
   },
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, `${uId()}-olgy-${file.originalname}`);
-  }
+  },
 });
 const router = express.Router();
 const upload = multer({ storage });
